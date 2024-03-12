@@ -1,42 +1,75 @@
 <?php
-	// aula4.php
+	// aula4_array.php
 
-	// alterando o timezone padrão para o horário utilizado no Brasil
-	date_default_timezone_set("America/Sao_Paulo");
+	// forma 1 de se criar um array
+	$estudante1 = ["João", 17, 68.9, "17/06/2006", "Estudante"];
 
-	// d - dia no formato de 2 digitos
-	// m - mês no formato de 2 digitos
-	// Y - mês no formato de 2 digitos
-	
-	// armazenado o dia em uma variavel
-	$dia = date("d");
+	echo ("Nome: " . $estudante1[0] . "<br>");
+	echo ("Idade: " . $estudante1[1] . "<br>");
+	echo ("Peso: " . $estudante1[2] . "<br>");
+	echo ("Nascimento: " . $estudante1[3] . "<br>");
+	echo ("Ocuparação: " . $estudante1[4] . "<br>");
 
-	echo ("Hoje é dia <b>$dia</b><br>");
+	// forma 2 de se criar um array
+	$estudante2 = array("Mateus", 18, 71.8, "28/01/2004", "Técnico em informática");
 
-	// exibindo o mês dentro de um echo
-	echo ("Mês " . date("m") . "<br>");
-	// aqui é opcional a tag de fechamento do php
+	echo ("Nome:  $estudante2[0] <br>");
+	echo ("Idade: $estudante2[1] <br>");
+	echo ("Peso:  $estudante2[2] <br>");
+	echo ("Nascimento:  $estudante2[3] <br>");
+	echo ("Ocuparação:  $estudante2[4] <br>");
 
-	echo ("Ano: " . date ("y") );
+	// adicionando outras informações a um array
+	$estudante2[] = 2807.58; // valor que representa sálario
 
-	// armazenando a data completa e formatada
-	$hoje = date("d/m/Y");
+	echo("Salário: $estudante2[5]<br>");
 
-	echo ("<br>Hoje é <b>$hoje</b>");
+	$estudante2[10] = "Rua Frederico Augusto Timmenn";
+	echo("Endereço: $estudante2[10]<br>");
 
-	// pegar a representação numérica do dia da semana, onde o nº 1 é segunda-feira e o nº 7 e domingo
-	$dia_semana = date("N");
+	//percorrer o array
+	$turma_info = ["Monique ", "Laura ", "Isabela ", "Maria ", "Matheus ", "Victor "];
 
-	echo ($dia_semana);
-	
-	if ($dia_semana == 2)
-		echo ("Terça-feira, hoje tem aula de programação para internet<br>");
-	else 
-		echo ("Hoje não tem aula de programação para internet");
+	//adicionando a Ana
+	$turma_info[7]= "Ana";
+	echo("<br>percorrendo o array ");
 
-	// usando date para trabalhar com horários
-	// H: hora
-	// i: minutos
-	// s: segundos
+	print_r($turma_info);
+	//quantos elementos tem o array?
+	$qtd= count($turma_info);
 
-	echo ("Agora são: " . date ("H:i:s") );
+	$turma_info[6]= "Pablo";
+	for ($i=0; $i < $qtd; $i++){
+		echo($turma_info[$i]);
+	}
+
+	//usando o foreach para percorrer o array
+	foreach($turma_info as $aluno){
+		echo("<br>Estudante: $aluno");
+	}
+
+	//criando um array associativo
+	$func1 = [
+		"nome" => "Tiago", 
+		"nascimento" => "25/06/2009", 
+		"cidade" => "Parobé", 
+		"profissao" => "Técnico em informática"
+	];
+
+	//acessando um array associativo
+	echo ("<br>Mostrando os dados dos funcionários<br>");
+	echo ("<br>Nome: <b>$func1[nome]</b>");
+	echo ("<br>Nascimento: <b>$func1[nascimento]</b>");
+	echo ("<br>Cidade: <b>$func1[cidade]</b>");
+	echo ("<br>Profissão: <b>$func1[profissao]</b>");
+
+	//a função sort coloca um array em ordem ascedente (alfabética)
+	sort($turma_info);
+
+	rsort($turma_info); //forma inversa
+
+	echo ("<br>Colocando o array em ordem alfabética");
+	foreach($turma_info as $aluno){
+		echo("<br>Estudante: $aluno");
+	}
+?>
