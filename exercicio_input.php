@@ -52,7 +52,7 @@
 					<input type="checkbox">
 					<label for="domingo">Domingo</label>
 				</div>
-			<br>Mensagem: <br><textarea name="mensagem"></textarea>
+			<br>Mensagem: <br><textarea rows="20" cols="50" name="mensagem"></textarea>
 		</fieldset>
 	</form>
 </body>
