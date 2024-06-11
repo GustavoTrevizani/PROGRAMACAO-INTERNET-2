@@ -1,108 +1,114 @@
 <?php
 	// arquivo processa_mensagem.php
 
-	if (isset($_GET["enviar"])) {
+	if (isset($_POST["enviar"])) {
 
+		// inicializa as variaveis para que os valores possam ser armazenados e exibidos mais tarde
 		$nome = ""; 
 		$nascimento = "";
-
-	//	if (isset($_GET["nome"]))
-			
-
-	//	if (isset($_GET["nasc"]))
-			$nascimento = $_GET["nasc"];
-		
-		$nome = $_GET["nome"];
-		$cpf = $_GET["cpf"];
-		$email = $_GET["email"];
-		$telefone = $_GET["fone"];
-		$sexo = $_GET["sexo"];
-
-		// dias da semana - próxima aula terminar
-		/*$seg = $_GET["seg"];
-		$ter = $_GET["ter"];
-		$qua = $_GET["qua"];
-		$qui = $_GET["qui"];
-		$sex = $_GET["sex"];
-		$sab = $_GET["sab"];
-
-		$msg = $_GET["mensagem"];
-	*/
+		$cpf = "";
+		$email = "";
+		$telefone = "";
+		$sexo = "";
+		$horario = "";
+		$msg = "";
 
 		$tem_erro = false; // variavel de controle para mostrar as informações no final
 
 		// validando as informações vindas do formulário
 		// a função empty retorna true se a variavel estiver vazia
-
-		if (isset($_GET["nome"]) && !empty($_GET["nome"])){
-			$nome = $_GET["nome"];
+		if (isset($_POST["nome"]) && !empty($_POST["nome"])){
+			$nome = $_POST["nome"];	// armazena o nome, somente se a variavel existir e não estiver vazia
 		} else {
-			echo ("Preencha o nome <br>");
-			$tem_erro = true;
-		}
-		
-		if (isset($_GET["nasc"]) && !empty($_GET["nasc"])){
-			$nascimento = $_GET["nasc"];
-		} else {
-			echo ("Preencha a data de nascimento <br>");
-			$tem_erro = true;
+			echo ("Preencha o nome <br>");	// printa na tela a mensagem de erro
+			$tem_erro = true;	// altera o status da variavel de controle
 		}
 
-		if (isset($_GET["cpf"]) && !empty($_GET["cpf"])){
-			$cpf = $_GET["cpf"];
+		// fazer a validação dos inputs abaixo, conforme o exemplo de cima
+
+		if (isset($_POST["nasc"]) && !empty($_POST["nasc"])){
+			$nascimento = $_POST["nasc"];	// armazena o nome, somente se a variavel existir e não estiver vazia
 		} else {
-			echo ("Preencha o CPF <br>");
-			$tem_erro = true;
+			echo ("Preencha o nascimento <br>");	// printa na tela a mensagem de erro
+			$tem_erro = true;	// altera o status da variavel de controle
 		}
 
-		if (isset($_GET["fone"]) && !empty($_GET["fone"])){
-			$telefone = $_GET["fone"];
+		if (isset($_POST["cpf"]) && !empty($_POST["cpf"])){
+			$cpf= $_POST["cpf"];	// armazena o nome, somente se a variavel existir e não estiver vazia
 		} else {
-			echo ("Preencha o telefone <br>");
-			$tem_erro = true;
+			echo ("Preencha o CPF <br>");	// printa na tela a mensagem de erro
+			$tem_erro = true;	// altera o status da variavel de controle
 		}
 
-
-		if (isset($_GET["email"]) && !empty($_GET["email"])){
-			$email = $_GET["email"];
+		if (isset($_POST["fone"]) && !empty($_POST["fone"])){
+			$telefone = $_POST["fone"];	// armazena o nome, somente se a variavel existir e não estiver vazia
 		} else {
-			echo ("Preencha o email <br>");
-			$tem_erro = true;
+			echo ("Preencha o telefone <br>");	// printa na tela a mensagem de erro
+			$tem_erro = true;	// altera o status da variavel de controle
 		}
 
-		if (isset($_GET["sexo"]) && !empty($_GET["sexo"])){
-			$sexo = $_GET["sexo"];
+		if (isset($_POST["email"]) && !empty($_POST["email"])){
+			$email = $_POST["email"];	// armazena o nome, somente se a variavel existir e não estiver vazia
 		} else {
-			echo ("Preencha o sexo <br>");
-			$tem_erro = true;
+			echo ("Preencha o email <br>");	// printa na tela a mensagem de erro
+			$tem_erro = true;	// altera o status da variavel de controle
 		}
+
+		if (isset($_POST["sexo"]) && !empty($_POST["sexo"])){
+			$sexo = $_POST["sexo"];	// armazena o nome, somente se a variavel existir e não estiver vazia
+		} else {
+			echo ("Preencha o sexo <br>");	// printa na tela a mensagem de erro
+			$tem_erro = true;	// altera o status da variavel de controle
+		}
+
+		if (isset($_POST["horario"]) && !empty($_POST["horario"])){
+			$horario = $_POST["horario"];	// armazena o nome, somente se a variavel existir e não estiver vazia
+		} else {
+			echo ("Preencha o horario <br>");	// printa na tela a mensagem de erro
+			$tem_erro = true;	// altera o status da variavel de controle
+		}
+
+		$msg = $_POST["mensagem"];
 
 		// se a variavel tem_erro for false, significa que não foi alterada dentro dos testes acima, ou seja, tudo está preenchido corretamente
 		if ($tem_erro == false) {
-			echo ("Os dados enviados foram: <br>");
-			echo ("Nome: $nome <br>");
-			echo ("Data de nascimento: $nascimento <br>");
-			echo ("CPF: $cpf <br>");
-			echo ("Email: $email <br>");
-			echo ("Telefone: $telefone <br>");
-			echo ("Sexo: $sexo <br>");
+			// mysql_connect é a função responsável
+			$conn =mysqli_connect("127.0.0.1", "root", "", "programacaoparainternet");
+
+			if ($conn) {
+				// conexao com sucesso
+
+			echo	$sql = "INSERT INTO atendimentos (nome, nascimento, cpf, email, telefone,
+					horario, mensagem, sexo) VALUES ('$nome', '$nascimento', '$cpf',
+					'$email', '$telefone', '$horario', '$msg', $sexo)";
+
+					// executa a consulta
+					if (mysqli_query($conn, $sql) )
+						echo ("<script>alert('Mensagem enviada com sucesso!'); </script>");
+					else
+						echo ("<script>alert('Houve um erro ao enviar a mensagem'); </script>");
+			} else {
+				die("Houve um erro ao conectar com o banco de dados");
+			}
+			
 			// validando os inputs checkbox
-			if ($_GET["seg"])
+			echo ("Dias para entrar em contato: <br>");
+			if (isset($_POST["seg"]) )
 				echo ("Segunda-feira ");
-			if ($_GET["ter"])
+			if (isset($_POST["ter"]) )
 				echo ("Terça-feira ");
-			if ($_GET["qua"])
+			if (isset($_POST["qua"]) )
 				echo ("Quarta-feira ");
-			if ($_GET["qui"])
+			if (isset($_POST["qui"]) )
 				echo ("Quinta-feira ");
-			if ($_GET["sex"])
+			if (isset($_POST["sex"]) )
 				echo ("Sexta-feira ");
-			if ($_GET["sab"])
+			if (isset($_POST["sab"]) )
 				echo ("Sábado ");
 
-			echo ("Mensagem enviada: $msg <br>");
+			echo ("<br>Mensagem enviada: $msg <br>");
 		}
 	}
- 
+
 
 ?>
