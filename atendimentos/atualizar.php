@@ -75,7 +75,8 @@
 		// a lógica de inserir os dados vai ser após as validações, para garantir que os dados sejam corretamente inseridos, sem valores em branco
 		if ($tem_erro == false) {
 			// mysql_connect é a função responsável pela conexão com o banco de dados: os 4 paramestros são: IP do servidor do BD, usuario, senha e nome da base de dados
-			$conn = mysqli_connect("10.10.3.158", "aluno", "aluno", "programacaoparainternet");
+			$conn = mysqli_connect("10.10.3.158", "aluno", "aluno", "biblioteca");
+
 
 			if ($conn) {
 				// conexao com sucesso 

@@ -10,7 +10,7 @@
 <body>
 	<?php
 		// conecta ao banco de dados
-		$conn = mysqli_connect("10.10.3.158", "aluno", "aluno", "programacaoparainternet");
+		$conn = mysqli_connect("10.10.3.158", "aluno", "aluno", "biblioteca");
 
 		if ($conn){
 			// conexão com sucesso
@@ -43,7 +43,7 @@
 					// botões para as ações do sistema
 					echo ("<td>
 							<a href='editar.php?id=$row[id]' class='edit_btn'>Editar</a>
-							<a href='#' class='del_btn'>Exclir</a>
+							<a href='' class='del_btn'>Excluir</a>
 						</td>");
 					echo ("</tr>");	// fecha a linha 
 				}

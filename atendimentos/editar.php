@@ -11,7 +11,8 @@
 		$id_atendimento = $_GET["id"];
 
 		//conecta ao banco de dados
-		$conn = mysqli_connect("10.10.3.158", "aluno", "aluno", "programacaoparainternet");
+		$conn = mysqli_connect("10.10.3.158", "aluno", "aluno", "biblioteca");
+
 
 		if ($conn){
 			echo $sql = "SELECT * FROM atendimentos WHERE id = $id_atendimento";
